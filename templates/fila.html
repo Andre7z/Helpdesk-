@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fila de Suporte</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="/" role="button" class="secondary">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/abrir" role="button">
+                        Abrir Chamado
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <h1>Fila de Chamados</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Descrição</th>
+                    <th>Prioridade</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for chamado in chamados %}
+                <tr>
+                    <td>{{ chamado['id'] }}</td>
+                    <td>{{ chamado['cliente'] }}</td>
+                    <td>{{ chamado['descricao'] }}</td>
+                    <td>{{ chamado['prioridade'] }}</td>
+                    <td>{{ chamado['status'] }}</td>
+
+                    <td>
+                        <a href="/atender/{{ chamado['id'] }}" role="button">
+                            Atender
+                        </a>
+
+                        <a href="/concluir/{{ chamado['id'] }}" role="button" class="secondary">
+                            Concluir
+                        </a>
+
+                        <a href="/cancelar/{{ chamado['id'] }}" role="button" class="contrast">
+                            Cancelar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </main>
+
+</body>
+
+</html>
